@@ -28,7 +28,8 @@ public final class BingoState extends SavedData {
     private final Map<UUID, Set<String>> claimedRewards = new HashMap<>();
 
     public static BingoState get(ServerLevel level) {
-        return level.getDataStorage().computeIfAbsent(
+        ServerLevel overworld = level.getServer().overworld();
+        return overworld.getDataStorage().computeIfAbsent(
                 new Factory<>(BingoState::new, BingoState::load, DataFixTypes.LEVEL),
                 NAME
         );
